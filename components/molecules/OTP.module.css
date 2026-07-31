@@ -3,22 +3,10 @@
   flex-direction: column;
   justify-content: space-between;
   width: 561px;
-  height: 362px;
+  /* height: 362px; */
   background-color: var(--white-color);
   border-radius: 20px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-}
-
-.button {
-  background-color: var(--green-color);
-  width: 490px;
-  height: 55px;
-  color: var(--white-color);
-  border-radius: 6px;
-  margin: 40px auto;
-  font-size: 18px;
-  font-weight: 500;
-  border: none;
 }
 
 .otpContainer {
@@ -43,7 +31,7 @@
   font-size: 28px;
   font-weight: 600;
   text-align: center;
-  margin-top: 55px;
+  margin: 45px auto 25px;
 }
 
 .input {
@@ -52,16 +40,42 @@
   border-radius: 6px;
   border: 1px solid var(--border-color);
   margin: 0 auto;
-  padding-right: 20px;
+  padding-left: 20px;
+  margin-bottom: 4px;
+}
+.input:focus {
+  outline: none;
+  border-color: #555;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.15);
 }
 
 .error {
   color: red;
+  margin: 0 40px;
+}
+
+.serverError {
+  color: red;
+  text-align: center;
+  margin-top: 5px;
+  direction: rtl;
+}
+
+.button {
+  background-color: var(--green-color);
+  width: 490px;
+  height: 55px;
+  color: var(--white-color);
+  border-radius: 6px;
+  margin: 13px auto 40px;
+  font-size: 18px;
+  font-weight: 500;
+  border: none;
 }
 
 @media (max-width: 786px) {
-  .container{
-    width:358px;
+  .container {
+    width: 358px;
   }
   .title {
     font-size: 22px;
