@@ -90,7 +90,6 @@ function CheckOTPForm({ mobile, setStep, setIsOpen }) {
         <button className={styles.button} type="submit">
           ورود به تورینو
         </button>
-        {/* {errors.code && console.log("hello:", errors.code.message)} */}
       </form>
     </div>
   );

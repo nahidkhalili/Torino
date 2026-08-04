@@ -12,6 +12,9 @@ import QueryString from "qs";
 import styles from "./SearchTicket.module.css";
 import { resetToMidnight } from "../../utils/resetToMidnight";
 
+const noIndicatorSpread = () => null;
+const noDropdownIndicator = () => null;
+
 const SearchTicket = ({ destinationCities, originCities }) => {
   const [query, setQuery] = useState("");
 
@@ -20,11 +23,10 @@ const SearchTicket = ({ destinationCities, originCities }) => {
 
   const { data, isPending, refetch } = useSearchTour(query);
 
-  const { register, handleSubmit, control, reset } = useForm();
+  const { handleSubmit, control, reset } = useForm();
 
   useEffect(() => {
     console.log("hi", originCities);
-
     const originId = getQuery("originId");
     const destinationId = getQuery("destinationId");
     if (originId && destinationId) reset({ originId, destinationId });
@@ -71,12 +73,18 @@ const SearchTicket = ({ destinationCities, originCities }) => {
                   ...provided,
                   color: "black",
                 }),
+                menu: (base) => ({
+                  ...base,
+                  width: "230px",
+                  position: "absolute",
+                  right: "-52px",
+                }),
               }}
               options={originCities}
               placeholder="مبدا"
               components={{
-                DropdownIndicator: () => null,
-                IndicatorSeparator: () => null,
+                DropdownIndicator: noDropdownIndicator,
+                IndicatorSeparator: noIndicatorSpread,
               }}
               onChange={(selectedOption) =>
                 field.onChange(selectedOption ? selectedOption.value : null)
@@ -85,6 +93,9 @@ const SearchTicket = ({ destinationCities, originCities }) => {
                 originCities.find((option) => option.value === field.value) ||
                 null
               }
+              closeMenuOnScroll={(e) => {
+                return true;
+              }}
             />
           )}
         />
@@ -120,20 +131,30 @@ const SearchTicket = ({ destinationCities, originCities }) => {
                   ...provided,
                   color: "black",
                 }),
+                menu: (base) => ({
+                  ...base,
+                  width: "230px",
+                  position: "absolute",
+                  right: "-52px",
+                }),
               }}
               options={destinationCities}
               placeholder="مقصد"
               components={{
-                DropdownIndicator: () => null,
-                IndicatorSeparator: () => null,
+                DropdownIndicator: noDropdownIndicator,
+                IndicatorSeparator: noIndicatorSpread,
               }}
               onChange={(selectedOption) =>
                 field.onChange(selectedOption ? selectedOption.value : null)
               }
               value={
-                destinationCities.find((option) => option.value === field.value) ||
-                null
+                destinationCities.find(
+                  (option) => option.value === field.value,
+                ) || null
               }
+              closeMenuOnScroll={(e) => {
+                return true;
+              }}
             />
           )}
         />

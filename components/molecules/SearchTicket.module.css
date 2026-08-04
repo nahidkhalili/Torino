@@ -47,6 +47,7 @@
 .inputContainer {
   width: 200px;
   border-left: 1px solid var(--border-color);
+  position: relative;
 }
 
 @media (max-width: 786px) {
