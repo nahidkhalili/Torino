@@ -25,19 +25,15 @@ const SearchTicket = ({ destinationCities, originCities }) => {
 
   const { handleSubmit, control, reset } = useForm();
 
+  const [focusedInput, setFocusedInput] = useState(null);
+
   useEffect(() => {
-    console.log("hi", originCities);
     const originId = getQuery("originId");
     const destinationId = getQuery("destinationId");
     if (originId && destinationId) reset({ originId, destinationId });
-    console.log({ originId, destinationId });
   }, []);
 
-  console.log("data:", data);
-
   const onSubmit = (form) => {
-    console.log("first", form);
-
     const query = QueryString.stringify(flattenObject(form));
     router.push(`/?${query}`);
   };
@@ -57,47 +53,70 @@ const SearchTicket = ({ destinationCities, originCities }) => {
         <Controller
           control={control}
           name="originId"
-          render={({ field }) => (
-            <Select
-              {...field}
-              styles={{
-                control: (provided) => ({
-                  ...provided,
-                  border: "none",
-                  boxShadow: "none",
-                  width: "129px",
-                  height: "40px",
-                  cursor: "pointer",
-                }),
-                placeholder: (provided) => ({
-                  ...provided,
-                  color: "black",
-                }),
-                menu: (base) => ({
-                  ...base,
-                  width: "230px",
-                  position: "absolute",
-                  right: "-52px",
-                }),
-              }}
-              options={originCities}
-              placeholder="مبدا"
-              components={{
-                DropdownIndicator: noDropdownIndicator,
-                IndicatorSeparator: noIndicatorSpread,
-              }}
-              onChange={(selectedOption) =>
-                field.onChange(selectedOption ? selectedOption.value : null)
-              }
-              value={
-                originCities.find((option) => option.value === field.value) ||
-                null
-              }
-              closeMenuOnScroll={(e) => {
-                return true;
-              }}
-            />
-          )}
+          render={({ field }) => {
+            // You should know that {field} contains the items below
+            // <Select
+            // name={field.name}
+            // value={field.value}
+            // onChange={field.onChange}
+            // onBlur={field.onBlur}
+            // ref={field.ref}
+            // />
+            const showLabel = !!field.value || focusedInput === "origin";
+            return (
+              <>
+                <span
+                  className={`${styles.labelStyle} ${showLabel ? styles.active : ""}`}
+                >
+                  مبدا
+                </span>
+
+                <Select
+                  {...field}
+                  styles={{
+                    control: (provided) => ({
+                      ...provided,
+                      border: "none",
+                      boxShadow: "none",
+                      width: "130px",
+                      height: "40px",
+                      color: "black",
+                      cursor: "pointer",
+                    }),
+
+                    menu: (base) => ({
+                      ...base,
+                      width: "230px",
+                      position: "absolute",
+                      right: "-52px",
+                    }),
+                  }}
+                  options={originCities}
+                  placeholder=""
+                  components={{
+                    DropdownIndicator: noDropdownIndicator,
+                    IndicatorSeparator: noIndicatorSpread,
+                  }}
+                  onChange={(selectedOption) =>
+                    field.onChange(selectedOption ? selectedOption.value : null)
+                  }
+                  value={
+                    originCities.find(
+                      (option) => option.value === field.value,
+                    ) || null
+                  }
+                  onFocus={() => setFocusedInput("origin")}
+                  onBlur={() => {
+                    field.onBlur();
+                    setFocusedInput(null);
+                  }}
+                  closeMenuOnScroll={(e) => {
+                    return true;
+                  }}
+                />
+              </>
+            );
+          }}
         />
       </div>
 
@@ -114,49 +133,62 @@ const SearchTicket = ({ destinationCities, originCities }) => {
         <Controller
           control={control}
           name="destinationId"
-          render={({ field }) => (
-            <Select
-              {...field}
-              styles={{
-                control: (provided) => ({
-                  ...provided,
-                  border: "none",
-                  boxShadow: "none",
-                  width: "130px",
-                  height: "40px",
-                  color: "black",
-                  cursor: "pointer",
-                }),
-                placeholder: (provided) => ({
-                  ...provided,
-                  color: "black",
-                }),
-                menu: (base) => ({
-                  ...base,
-                  width: "230px",
-                  position: "absolute",
-                  right: "-52px",
-                }),
-              }}
-              options={destinationCities}
-              placeholder="مقصد"
-              components={{
-                DropdownIndicator: noDropdownIndicator,
-                IndicatorSeparator: noIndicatorSpread,
-              }}
-              onChange={(selectedOption) =>
-                field.onChange(selectedOption ? selectedOption.value : null)
-              }
-              value={
-                destinationCities.find(
-                  (option) => option.value === field.value,
-                ) || null
-              }
-              closeMenuOnScroll={(e) => {
-                return true;
-              }}
-            />
-          )}
+          render={({ field }) => {
+            const showLabel = !!field.value || focusedInput === "destination";
+            return (
+              <>
+                <span
+                  className={`${styles.labelStyle} ${showLabel ? styles.active : ""}`}
+                >
+                  مقصد
+                </span>
+
+                <Select
+                  {...field}
+                  styles={{
+                    control: (provided) => ({
+                      ...provided,
+                      border: "none",
+                      boxShadow: "none",
+                      width: "130px",
+                      height: "40px",
+                      color: "black",
+                      cursor: "pointer",
+                    }),
+
+                    menu: (base) => ({
+                      ...base,
+                      width: "230px",
+                      position: "absolute",
+                      right: "-52px",
+                    }),
+                  }}
+                  options={destinationCities}
+                  placeholder=""
+                  components={{
+                    DropdownIndicator: noDropdownIndicator,
+                    IndicatorSeparator: noIndicatorSpread,
+                  }}
+                  onChange={(selectedOption) =>
+                    field.onChange(selectedOption ? selectedOption.value : null)
+                  }
+                  value={
+                    destinationCities.find(
+                      (option) => option.value === field.value,
+                    ) || null
+                  }
+                  onFocus={() => setFocusedInput("destination")}
+                  onBlur={() => {
+                    field.onBlur();
+                    setFocusedInput(null);
+                  }}
+                  closeMenuOnScroll={(e) => {
+                    return true;
+                  }}
+                />
+              </>
+            );
+          }}
         />
       </div>
       <div className={styles.dateContainer}>
