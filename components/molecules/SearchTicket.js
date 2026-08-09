@@ -202,24 +202,37 @@ const SearchTicket = ({ destinationCities, originCities }) => {
         <Controller
           control={control}
           name="date"
-          render={({ field: { onChange } }) => (
-            <DatePicker
-              round="x2"
-              accentColor="#28A745"
-              onChange={(e) =>
-                onChange({
-                  startDate: resetToMidnight(DateToIso(e.from)),
-                  endDate: resetToMidnight(DateToIso(e.to)),
-                })
-              }
-              range
-              inputClass={`${styles.input}`}
-              inputAttributes={{
-                placeholder: "تاریخ",
-              }}
-              className={`${styles.calendar}`}
-            />
-          )}
+          render={({ field }) => {
+            const showLabel = !!field.value || focusedInput === "date";
+            return (
+              <>
+                <span
+                  className={`${styles.labelStyle} ${showLabel ? styles.dateActive : ""}`}
+                >
+                  تاریخ
+                </span>
+
+                <DatePicker
+                  round="x2"
+                  accentColor="#28A745"
+                  onChange={(e) =>
+                    field.onChange({
+                      startDate: resetToMidnight(DateToIso(e.from)),
+                      endDate: resetToMidnight(DateToIso(e.to)),
+                    })
+                  }
+                  range
+                  inputClass={`${styles.input}`}
+                  inputAttributes={{
+                    // placeholder: "تاریخ",
+                    onBlur: () => setFocusedInput(null),
+                    onFocus: () => setFocusedInput("date"),
+                  }}
+                  className={`${styles.calendar}`}
+                />
+              </>
+            );
+          }}
         />
       </div>
       <button type="submit" className={styles.button}>
