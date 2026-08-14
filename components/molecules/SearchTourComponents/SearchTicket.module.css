@@ -44,26 +44,7 @@
   position: relative;
 }
 
-.labelStyle {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 30px;
-  padding: 0 7px;
-  z-index: 10;
-  color: var(--dark-gray);
-  transition: all 0.3s ease;
-  pointer-events: none;
-  font-weight: 700;
-}
 
-.active {
-  top: -15px;
-  right: 0;
-  background-color: white;
-  font-weight: 300;
-  color: var(--border-color);
-}
 
 .dateActive {
   top: -22px;

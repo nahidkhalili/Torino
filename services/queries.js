@@ -1,15 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import api from "../config/api";
-import QueryString from "qs";
 
-const useSearchTour = (query) => {
-  const url = "tour?" + QueryString.stringify(query);
 
-  const queryFn = () => api.get(url);
-  const queryKey = ["tour", query];
-
-  return useQuery({ queryFn, queryKey, enabled: false });
-};
 
 const useFetchTour = (tourId) => {
   const queryKey = ["tour", tourId];

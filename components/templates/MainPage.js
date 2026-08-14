@@ -1,16 +1,13 @@
 import Image from "next/image";
 import styles from "./MainPage.module.css";
 import Tours from "../organisms/Tours";
-import SearchTicket from "../molecules/SearchTicket";
+import SearchTicket from "../molecules/SearchTourComponents/SearchTicket";
 import CallPurchasing from "../molecules/CallPurchasing";
 import WhyTorino from "../molecules/WhyTorino";
 import TorinoServices from "../molecules/TorinoServices";
 import { translateCityName } from "../../utils/translateCityName";
 
-
 const MainPage = async ({ tours }) => {
-
-
   const originSet = new Set();
   const destinationSet = new Set();
 
@@ -62,7 +59,6 @@ const MainPage = async ({ tours }) => {
         <Tours tours={tours} />
         <CallPurchasing />
         <WhyTorino />
-
       </div>
       <TorinoServices />
     </div>
