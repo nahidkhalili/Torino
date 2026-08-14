@@ -222,9 +222,9 @@ const SearchTicket = ({ destinationCities, originCities }) => {
                     })
                   }
                   range
+                  position="center"
                   inputClass={`${styles.input}`}
                   inputAttributes={{
-                    // placeholder: "تاریخ",
                     onBlur: () => setFocusedInput(null),
                     onFocus: () => setFocusedInput("date"),
                   }}
