@@ -5,7 +5,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const serverFetch = async (
   endpoint,
   query,
-  cache = { cache: "force-cache" }
+  cache = { cache: "force-cache" },
 ) => {
   let url = BASE_URL;
   if (endpoint) url += endpoint;
@@ -14,8 +14,18 @@ const serverFetch = async (
   console.log("url", url);
 
   try {
+    // const res = await fetch(`${url}`, cache);
+    // const json = await res.json();
+    // return json;
     const res = await fetch(`${url}`, cache);
+
+    console.log("STATUS:", res.status);
+    console.log("URL:", url);
+
     const json = await res.json();
+
+    console.log("SERVER FETCH LENGTH:", json.length);
+
     return json;
   } catch (error) {
     console.log(error);

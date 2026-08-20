@@ -15,9 +15,7 @@
   display: flex;
   align-items: center;
 }
-.calendar {
-  transform: translateX(80px);
-}
+
 
 .button {
   width: 180px;
@@ -30,13 +28,7 @@
   margin-left: 5px;
 }
 
-.input {
-  width: 120px;
-  font-size: 16px;
-  outline: none;
-  border: none;
-  cursor: pointer;
-}
+
 
 .inputContainer {
   width: 200px;
@@ -46,13 +38,7 @@
 
 
 
-.dateActive {
-  top: -22px;
-  right: 0;
-  background-color: white;
-  font-weight: 300;
-  color: var(--border-color);
-}
+
 
 @media (max-width: 786px) {
   .container {
@@ -79,7 +65,5 @@
     border: 1px solid var(--border-color);
     border-radius: 12px;
   }
-  .calendar {
-    transform: none;
-  }
+
 }

@@ -1,0 +1,38 @@
+.labelStyle {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 30px;
+  padding: 0 7px;
+  z-index: 10;
+  color: var(--dark-gray);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  font-weight: 700;
+}
+
+.dateActive {
+  top: -22px;
+  right: 0;
+  background-color: white;
+  font-weight: 300;
+  color: var(--border-color);
+}
+
+.input {
+  width: 120px;
+  font-size: 16px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.calendar {
+  transform: translateX(80px);
+}
+
+@media (max-width: 786px) {
+  .calendar {
+    transform: none;
+  }
+}

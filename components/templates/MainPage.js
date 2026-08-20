@@ -5,37 +5,16 @@ import SearchTicket from "../molecules/SearchTourComponents/SearchTicket";
 import CallPurchasing from "../molecules/CallPurchasing";
 import WhyTorino from "../molecules/WhyTorino";
 import TorinoServices from "../molecules/TorinoServices";
-import { translateCityName } from "../../utils/translateCityName";
+import {
+  createDestinationCities,
+  createOriginCities,
+} from "../../utils/createCityList";
 
-const MainPage = async ({ tours }) => {
-  const originSet = new Set();
-  const destinationSet = new Set();
-
-  const originCities = tours
-    .map((tour) => {
-      if (!originSet.has(tour.origin.id)) {
-        originSet.add(tour.origin.id);
-        return {
-          value: tour.origin.id,
-          label: translateCityName(tour.origin.name),
-        };
-      }
-      return null;
-    })
-    .filter((city) => city !== null);
-
-  const destinationCities = tours
-    .map((tour) => {
-      if (!destinationSet.has(tour.destination.id)) {
-        destinationSet.add(tour.destination.id);
-        return {
-          value: tour.destination.id,
-          label: translateCityName(tour.destination.name),
-        };
-      }
-      return null;
-    })
-    .filter((city) => city !== null);
+const MainPage = async ({ tours, allTours }) => {
+  const originCities = createOriginCities(allTours);
+  const destinationCities = createDestinationCities(allTours);
+  console.log("MAIN allTours:", allTours?.length);
+  console.log("MAIN tours:", tours?.length);
 
   return (
     <div className={styles.totalPage}>

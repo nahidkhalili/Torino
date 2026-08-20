@@ -9,6 +9,15 @@ const noDropdownIndicator = () => null;
 
 const CitySelect = ({ field, city, label }) => {
   const [focusedInput, setFocusedInput] = useState(null);
+  // console.log("it is me:");
+  // console.log(
+  //   "field:",
+  //   field.value,
+  //   typeof field.value,
+  //   "city value:",
+  //   city[0]?.value,
+  //   typeof city[0]?.value,
+  // );
   const showLabel = !!field.value || focusedInput === true;
   return (
     <div>
@@ -17,6 +26,14 @@ const CitySelect = ({ field, city, label }) => {
       >
         {label}
       </span>
+      {/* You should know that {field} contains the items below
+                   <Select
+                  name={field.name}
+                  value={field.value}
+                  onChange={field.onChange}
+                  onBlur={field.onBlur}
+                  ref={field.ref}
+                    /> */}
       <Select
         {...field}
         styles={{
@@ -51,9 +68,6 @@ const CitySelect = ({ field, city, label }) => {
         onBlur={() => {
           field.onBlur();
           setFocusedInput(false);
-        }}
-        closeMenuOnScroll={(e) => {
-          return true;
         }}
       />
     </div>

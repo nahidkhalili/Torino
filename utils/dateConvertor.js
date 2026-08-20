@@ -1,4 +1,3 @@
-
 const dateConverter = (dateStr) => {
   const monthArray = [
     { id: "۱", value: "فروردین" },
@@ -16,7 +15,7 @@ const dateConverter = (dateStr) => {
   ];
 
   const tourDate = new Date(dateStr).toLocaleString("fa-IR");
-  console.log("ddddaaaattttteeee", tourDate);
+  // console.log("ddddaaaattttteeee", tourDate);
 
   const [date, time] = tourDate.split(",");
   const parts = date.split("/");
@@ -27,7 +26,6 @@ const dateConverter = (dateStr) => {
   const shamsiDate = [year, month, day];
 
   return shamsiDate;
-
 };
 
 export const tourDays = (endDate, startDate) => {

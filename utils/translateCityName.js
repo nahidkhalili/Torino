@@ -9,8 +9,16 @@ const cityMap = {
   sulaymaniyahTour: "سلیمانیه",
   Hewler: "هولر",
   Mazandaran: "مازندران",
-  "offRoad Center": "تور آفرود",
+  "OffRoad Center": "تور آفرود",
   Italy: "ایتالیا",
+  Sulaymaniyah: "سلیمانیه",
+  Italy: "ایتالیا",
+  Kish: "کیش",
+  Cappadocia: "کاپادوکیه",
+  Dubai: "دوبی",
+  Paris: "پاریس",
+  Yazd: "یزد",
+  Rome: "رم",
 };
 
 export const translateCityName = (cityName) => {
